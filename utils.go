@@ -7,6 +7,7 @@ import (
 	"os"
 	"path/filepath"
 	"strconv"
+	"strings"
 
 	"code.cloudfoundry.org/bytefmt"
 	"github.com/prometheus/client_golang/prometheus"
@@ -37,7 +38,7 @@ func parseString(s string) (float64, error) {
 
 //newDesc returns a Prometheus description from a metric
 func newDesc(m metric) *prometheus.Desc {
-	return prometheus.NewDesc(m.name, m.help, nil, nil)
+	return prometheus.NewDesc(strings.ReplaceAll(m.name, ".", "_"), m.help, nil, nil)
 }
 
 //neMetric returns a Prometheus metric from a metric

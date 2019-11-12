@@ -4,6 +4,7 @@
 *.dll
 *.so
 *.dylib
+emq_exporter
 
 # Test binary, build with `go test -c`
 *.test
