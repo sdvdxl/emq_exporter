@@ -1,17 +1,15 @@
 package main
 
 import (
+	"code.cloudfoundry.org/bytefmt"
 	"encoding/json"
 	"fmt"
+	"github.com/prometheus/client_golang/prometheus"
+	"github.com/prometheus/common/log"
 	"io/ioutil"
 	"os"
 	"path/filepath"
 	"strconv"
-	"strings"
-
-	"code.cloudfoundry.org/bytefmt"
-	"github.com/prometheus/client_golang/prometheus"
-	"github.com/prometheus/common/log"
 )
 
 const (
@@ -38,7 +36,7 @@ func parseString(s string) (float64, error) {
 
 //newDesc returns a Prometheus description from a metric
 func newDesc(m metric) *prometheus.Desc {
-	return prometheus.NewDesc(strings.ReplaceAll(m.name, ".", "_"), m.help, nil, nil)
+	return prometheus.NewDesc(m.name, m.help, nil, nil)
 }
 
 //neMetric returns a Prometheus metric from a metric

@@ -79,7 +79,7 @@ func (c *Client) Fetch() (map[string]interface{}, error) {
 		}
 
 		for k, v := range res {
-			mName := fmt.Sprintf("%s_%s", name, strings.Replace(k, "/", "_", -1))
+			mName := fmt.Sprintf("%s_%s", name, strings.ReplaceAll(k, ".", "_"))
 			data[mName] = v
 		}
 	}

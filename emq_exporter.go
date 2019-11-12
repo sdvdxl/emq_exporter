@@ -99,6 +99,8 @@ func (e *Exporter) Collect(ch chan<- prometheus.Metric) {
 			log.Errorf("newMetric: %v", err)
 			continue
 		}
+		log.Infoln("metric:", m.Desc())
+
 		ch <- m
 	}
 
